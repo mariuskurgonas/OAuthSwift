@@ -418,7 +418,7 @@ extension OAuthSwiftHTTPRequest {
                 self.parameters += credential.authorizationParametersWithSignature(method: method, url: signatureUrl, parameters: signatureParameters, body: body)
             }
 
-            self.urlRequest.allHTTPHeaderFields = requestHeaders + headers
+            self.urlRequest.allHTTPHeaderFields = headers + requestHeaders
         }
 
     }
