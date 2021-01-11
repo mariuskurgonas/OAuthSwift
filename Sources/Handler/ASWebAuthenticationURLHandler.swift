@@ -16,15 +16,13 @@ import AuthenticationServices
 @available(iOS 13.0, macCatalyst 13.0, *)
 open class ASWebAuthenticationURLHandler: OAuthSwiftURLHandlerType {
     var webAuthSession: ASWebAuthenticationSession!
-    let prefersEphemeralWebBrowserSession: Bool
     let callbackUrlScheme: String
 
     weak var presentationContextProvider: ASWebAuthenticationPresentationContextProviding?
 
-    public init(callbackUrlScheme: String, presentationContextProvider: ASWebAuthenticationPresentationContextProviding?, prefersEphemeralWebBrowserSession: Bool = false) {
+    public init(callbackUrlScheme: String, presentationContextProvider: ASWebAuthenticationPresentationContextProviding?) {
         self.callbackUrlScheme = callbackUrlScheme
         self.presentationContextProvider = presentationContextProvider
-        self.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
     }
 
     public func handle(_ url: URL) {
@@ -47,7 +45,6 @@ open class ASWebAuthenticationURLHandler: OAuthSwiftURLHandlerType {
                                                         #endif
         })
         webAuthSession.presentationContextProvider = presentationContextProvider
-        webAuthSession.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
 
         _ = webAuthSession.start()
     }
